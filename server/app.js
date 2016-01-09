@@ -1,7 +1,8 @@
 var express = require("express"),
     app = express(),
     morgan = require("morgan"),
-    path = require("path");
+    path = require("path"),
+    bodyParser = require("body-parser");
 
 //MIDDLEWARE
 app.use(morgan('tiny'));
