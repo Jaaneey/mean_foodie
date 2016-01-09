@@ -1,10 +1,12 @@
-var app = angular.module("foodieApp", ['ngRoute']);
+var app = angular.module('foodieApp', ['ngRoute']);
 
 app.config(function($routeProvider, $locationProvider){
 
   $routeProvider
-
-    //EVENTS
+    // .when('/',{
+    //   template: "<p>Test</p>",
+    //   controller: "EventsController"
+    // })
     .when('/events',{
       templateUrl: "templates/events/index.html",
       controller: "EventsController"
@@ -16,7 +18,10 @@ app.config(function($routeProvider, $locationProvider){
     .when('/events/:id/edit',{
       templateUrl: "templates/events/edit.html",
       controller: "EditEventsController"
-    });
+    })
+    .otherwise({redirectTo: '/events'});
+
+
 
 
   // get rid of #
