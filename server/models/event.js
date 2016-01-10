@@ -9,4 +9,4 @@ var eventSchema =  new mongoose.Schema({
 
 
 var Event = mongoose.model('event', eventSchema);
-module.exports = Icecream;
+module.exports = Event;
