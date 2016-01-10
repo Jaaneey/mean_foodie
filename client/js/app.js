@@ -22,8 +22,5 @@ app.config(function($routeProvider, $locationProvider){
     .otherwise({redirectTo: '/events'});
 
 
-
-
-  // get rid of #
   $locationProvider.html5Mode(true);
 });
