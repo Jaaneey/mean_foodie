@@ -1,10 +1,15 @@
 var mongoose = require('mongoose');
 
 var eventSchema =  new mongoose.Schema({
-  title: String,
+  name: String,
+  url: String,
   description: String,
-  location: String,
-  photoUrl: String
+  date: String,
+  start: String, //UTC TIMESTAMP PLEASE
+  end: String,   //UTIC TIMESTAMP PLEASE
+  venue: String,
+  city: String,
+  address: String
 });
 
 

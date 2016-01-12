@@ -16,8 +16,7 @@ router.get('/meetup', function(req,res){
         anEvent.name = el.name;
         anEvent.url = el.event_url;
         anEvent.description = el.description;
-        ///FIGURE OUT DATE
-        anEvent.date = null;
+        anEvent.date = new Date(el.time).toDateString();
         anEvent.start = el.time;
         anEvent.end = el.time + el.duration;
         if (el.venue){
