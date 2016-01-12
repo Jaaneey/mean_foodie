@@ -47,31 +47,38 @@ router.get('/eventbrite', function(req,res){
           anEvent.start = el.start.local;
           anEvent.end = el.end.local;
           anEvent.venue_id = el.venue_id;
+
+          //GRAB VENUE FOR EVENTBRITE 
+          var dummy= 0;
+          if (el.venue_id && dummy < 1){
+            request('https://www.eventbriteapi.com/v3/venues/'+el.venue_id+'/?token='+ process.env.EVENTBRITE_VENUE, function (error, response, body) {
+              if (!error && response.statusCode == 200) {
+                console.log("*****EVENT", anEvent);
+                var responseV = JSON.parse(body);
+                console.log("venue info", body);
+                anEvent.venue = responseV.name;
+                anEvent.city = responseV.address.city;
+                anEvent.address = responseV.address.address_1;
+              }
+          });
+          dummy ++;
+          // console.log(dummy);
+            
+       }
           
           return  anEvent;
       });
+      var tester = eventArrayE[0];
+      console.log(tester);
       
-      // var tester = eventArrayE[10];
       // console.log("test object", tester);
       // console.log("the ID", tester.venue_id);
-       if (tester.venue_id){
-            request('https://www.eventbriteapi.com/v3/venues/'+tester.venue_id+'/?token='+ process.env.EVENTBRITE_VENUE, function (error, response, body) {
-              if (!error && response.statusCode == 200) {
-                var responseV = JSON.parse(body);
-                console.log(body);
-                console.log("venue name", responseV.name);
-                console.log("venue city", responseV.address.city);
-                console.log("venue address",responseV.address.address_1);
-              }
-          });
-            
-          }
 
     }
   });
 });
 
-//GRAB VENUE FOR EVENTBRITE 
+
 //https://www.eventbriteapi.com/v3/venues/12155401/?token=
 
 
