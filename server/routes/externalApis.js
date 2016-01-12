@@ -37,7 +37,7 @@ router.get('/eventbrite', function(req,res){
     if (!error && response.statusCode == 200) {
       // console.log(body);  Testing
       var responseE = JSON.parse(body);
-      console.log(responseE.events[0]);
+      // console.log(responseE.events[0]);
       var eventArrayE = responseE.events.map(function(el){
           var anEvent = {};
           anEvent.name = el.name.text;
@@ -46,17 +46,27 @@ router.get('/eventbrite', function(req,res){
           //NEED DATE
           anEvent.start = el.start.local;
           anEvent.end = el.end.local;
+          anEvent.venue_id = el.venue_id;
           
-          if (el.venue_id){
-            request('https://www.eventbriteapi.com/v3/venues/12155401/?token='+ process.env.EVENTBRITE_VENUE, function (error, response, body) {
+          return  anEvent;
+      });
+      
+      // var tester = eventArrayE[10];
+      // console.log("test object", tester);
+      // console.log("the ID", tester.venue_id);
+       if (tester.venue_id){
+            request('https://www.eventbriteapi.com/v3/venues/'+tester.venue_id+'/?token='+ process.env.EVENTBRITE_VENUE, function (error, response, body) {
               if (!error && response.statusCode == 200) {
+                var responseV = JSON.parse(body);
                 console.log(body);
+                console.log("venue name", responseV.name);
+                console.log("venue city", responseV.address.city);
+                console.log("venue address",responseV.address.address_1);
               }
           });
             
           }
-          return  anEvent;
-      });
+
     }
   });
 });
