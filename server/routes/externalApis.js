@@ -10,12 +10,14 @@ router.get('/meetup', function(req,res){
   request('https://api.meetup.com/2/open_events.json?category=10&zip=94101&time=,1w&key='+ process.env.MEETUP_KEY, function (error, response, body) {
   if (!error && response.statusCode == 200) {
     var responseM = JSON.parse(body);
-    // console.log(responseM.results[0]);
+    console.log(responseM.results[0]);
     var eventArrayM = responseM.results.map(function(el){
         var anEvent = {};
         anEvent.name = el.name;
         anEvent.url = el.event_url;
         anEvent.description = el.description;
+        ///FIGURE OUT DATE
+        anEvent.date = null;
         anEvent.start = el.time;
         anEvent.end = el.time + el.duration;
         if (el.venue){
@@ -42,6 +44,7 @@ router.get('/eventbrite', function(req,res){
           anEvent.name = el.name.text;
           anEvent.url = el.vanity_url;
           anEvent.description = el.description.text;
+          //NEED DATE
           anEvent.start = el.start.local;
           anEvent.end = el.end.local;
           
