@@ -21,5 +21,21 @@ app.controller("NewEventsController", function($scope, EventService, $location){
 });
 
 app.controller("EditEventsController", function($scope, EventService){
-$scope.message = "Edit";
+  $scope.message = "Edit";
+  EventService.getEvent(event).then(function(){
+    $scope.event = event.data;
+  });
+
+  $scope.editEvent = function(event){
+    EventService.editEvent(event).then(function(){
+      $location.path('/events');
+    });
+  };
+
+  $scope.deleteEvent = function(event){
+    EventService.deleteEvent(event._id).then(function(){
+      $location.path('/events');
+    });
+  };
+
 });
