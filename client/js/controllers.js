@@ -4,7 +4,7 @@ app.controller("tester", function($scope, EventService){
 
 app.controller("EventsController", function($scope, EventService){
   $scope.message = "Events";
-  EventService.getEvents().then(function(){
+  EventService.getEvents().then(function(events){
     $scope.events = events.data;
   }).catch(function(err){
     $scope.errors = err;
@@ -20,9 +20,12 @@ app.controller("NewEventsController", function($scope, EventService, $location){
  };
 });
 
-app.controller("EditEventsController", function($scope, EventService){
-  $scope.message = "Edit";
-  EventService.getEvent(event).then(function(){
+app.controller("EditEventsController", function($scope, EventService, $routeParams, $location){
+  $scope.message = $routeParams.id;
+    EventService.getEvent($routeParams.id).then(function(event){
+    console.log("this is where we are");
+    console.log($routeParams.id);
+    console.log("this is my event", event.data);
     $scope.event = event.data;
   });
 
@@ -33,6 +36,7 @@ app.controller("EditEventsController", function($scope, EventService){
   };
 
   $scope.deleteEvent = function(event){
+    console.log("what's being passed to delete function", event);
     EventService.deleteEvent(event._id).then(function(){
       $location.path('/events');
     });

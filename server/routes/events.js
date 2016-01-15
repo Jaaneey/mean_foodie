@@ -25,6 +25,7 @@ router.post('/', function(req,res){
 //get single event
 router.get('/:id', function(req, res){
   db.Event.findById(req.params.id, function(err, event){
+    console.log("server sending event back", event);
     res.status(200).send(event);
   });
 });
@@ -37,6 +38,7 @@ router.put('/:id', function(req,res){
 });
 //delete single event
 router.delete('/:id', function(req,res){
+  console.log("serverside delete route");
   db.Event.findByIdAndRemove(req.params.id, function(err, event){
     res.status(200).send();
   });

@@ -13,6 +13,7 @@ app.service("EventService", function($http){
       return $http.get('/api/events/'+ id);
     },
     deleteEvent: function(id){
+      console.log("REACHED DELETE EVENT SERVICE");
       return $http.delete('/api/events/'+ id);
     }
   };
