@@ -11,8 +11,13 @@ app.controller("EventsController", function($scope, EventService){
   });
 });
 
-app.controller("NewEventsController", function($scope, EventService){
+app.controller("NewEventsController", function($scope, EventService, $location){
  $scope.message = "New";
+ $scope.addEvent = function(event){
+  EventService.addEvent(event).then(function(){
+    $location.path('/events');
+  });
+ };
 });
 
 app.controller("EditEventsController", function($scope, EventService){
