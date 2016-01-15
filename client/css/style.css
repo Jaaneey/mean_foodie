@@ -1,0 +1,13 @@
+.events {
+  width: 60%;
+  background-color: yellow;
+  display: inline-block;
+
+}
+
+.sidebar {
+  display: inline-block;
+  width: 35%;
+  background-color: lightblue;
+}
+

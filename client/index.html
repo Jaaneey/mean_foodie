@@ -2,17 +2,27 @@
 <html lang="en" ng-app="foodieApp">
 <head>
   <meta charset="UTF-8">
+  <link rel="stylesheet" href="./css/style.css" type='text/css'>
   <title>SanFranFoodie</title>
   <base href="/">
 </head>
 <body>
-  <p>This is the thing</p>
+  <div>
+    <h1>This is the List of Awesome Events</h1>
+    <a href="/events/new">Create | Other Options | Search | Whatever</a>
+  </div>
+  <div class="events" ng-controller="EventsController">
+    <ul>
+      <li ng-repeat='event in events'>
+        {{event.name}}
+        <a ng-href="/events/{{event._id}}/edit">Edit {{todo.task}}</a>
+      </li>
+    </ul>
+  </div>
+
   
-  <!-- <div ng-controller="EditEventsController">
-    {{message}}
-  </div> -->
   
-  <div ng-view>
+  <div class="sidebar" ng-view>
   </div>
   
 

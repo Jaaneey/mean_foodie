@@ -36,7 +36,7 @@ app.controller("EditEventsController", function($scope, EventService, $routePara
   };
 
   $scope.deleteEvent = function(event){
-    console.log("what's being passed to delete function", event);
+    console.log("what's being passed to delete function", event._id);
     EventService.deleteEvent(event._id).then(function(){
       $location.path('/events');
     });
