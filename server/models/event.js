@@ -13,5 +13,5 @@ var eventSchema =  new mongoose.Schema({
 });
 
 
-var Event = mongoose.model('event', eventSchema);
+var Event = mongoose.model('Event', eventSchema);
 module.exports = Event;
