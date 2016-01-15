@@ -1,1 +1,33 @@
 <h1>NEW EVENT FORM</h1>
+
+<form action="javascript:void(0)" ng-submit="addEvent(event)">
+  <label for="name">Event Title</label>
+  <input type="text" ng-model="event.name" id="name">
+
+  <label for="url">Event URL</label>
+  <input type="text" ng-model="event.url" id="url">
+
+  <label for="description">Description</label>
+  <input type="text" ng-model="event.description" id="description">
+
+  <label for="date">Date of Event</label>
+  <input type="text" ng-model="event.date" id="date">
+
+  <label for="start">Start Time</label>
+  <input type="text" ng-model="event.start" id="start">
+
+  <label for="end">End Time</label>
+  <input type="text" ng-model="event.end" id="end">
+
+  <label for="venue">Venue</label>
+  <input type="text" ng-model="event.venue" id="venue">
+  
+   <label for="address">Street Address</label>
+  <input type="text" ng-model="event.address" id="address">
+
+  <label for="city">City</label>
+  <input type="text" ng-model="event.city" id="city">
+
+
+  <input type="submit" value="Add Event">
+</form>
